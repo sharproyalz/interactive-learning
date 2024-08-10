@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: 'Next.js Template',
+  name: 'Interactive Learning',
   separator: '|',
-  emoji: '⚛️',
+  emoji: '✎',
 } as const;
