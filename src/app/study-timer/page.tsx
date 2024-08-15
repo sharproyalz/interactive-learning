@@ -6,8 +6,8 @@ export default function StudyTimerPage() {
   return (
     <>
       <div className="">
-        {/* <StudyTimerView /> */}
-        <TimerView />
+        <StudyTimerView />
+        {/* <TimerView /> */}
       </div>
       <NavigationBar />
     </>
