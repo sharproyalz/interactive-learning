@@ -12,7 +12,8 @@
     box-sizing: border-box;
   }
 
-  body {
+  body,
+  nav {
     background-color: #101010;
   }
 

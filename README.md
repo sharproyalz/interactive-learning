@@ -9,6 +9,11 @@ necessary.
 
 ## Changelog
 
+### Version 0.0.4
+
+- chore: create a navigation bar below
+- chore: create a countdown timer page
+
 ### Version 0.0.3
 
 - chore: create a title and input fields in study timer page
