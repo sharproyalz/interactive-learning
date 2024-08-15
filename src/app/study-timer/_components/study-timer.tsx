@@ -9,9 +9,7 @@ export default function StudyTimerView() {
     timerHour: "",
     timerMin: "",
     timerSec: "",
-    restEveryHour: "",
-    restEveryMin: "",
-    restEverySec: "",
+    restQuantity: "",
     restTimerHour: "",
     restTimerMin: "",
     restTimerSec: "",
@@ -95,57 +93,32 @@ export default function StudyTimerView() {
 
           {/* Rest every */}
           <div className="mt-8">
-            <div className="font-semibold">Rest every</div>
+            <div className="font-semibold">Rest Quantity</div>
             {/* Rest every Container*/}
             <div className="mt-2 flex justify-between">
-              {/* Hour */}
-              <div className="flex items-end">
-                <input
-                  type="text"
-                  name="restEveryHour"
-                  id="rest-every-hour"
-                  className="w-12 rounded-md border border-gray bg-transparent p-2 text-center text-2xl font-semibold outline-none focus:border-white"
-                  placeholder="00"
-                  value={timers.restEveryHour}
-                  onChange={handleChange}
-                  required
-                />
-                <label htmlFor="rest-every-hour" className="text-sm font-light">
-                  hour
-                </label>
-              </div>
-
-              {/* Minute */}
-              <div className="flex items-end">
-                <input
-                  type="text"
-                  name="restEveryMin"
-                  id="rest-every-min"
-                  className="w-12 rounded-md border border-gray bg-transparent p-2 text-center text-2xl font-semibold outline-none focus:border-white"
-                  placeholder="00"
-                  value={timers.restEveryMin}
-                  onChange={handleChange}
-                  required
-                />
-                <label htmlFor="rest-every-min" className="text-sm font-light">
-                  min
-                </label>
-              </div>
-
               {/* Second */}
               <div className="flex items-end">
-                <input
-                  type="text"
-                  name="restEverySec"
-                  id="rest-every-sec"
+                <select
+                  name="restQuantity"
+                  id="rest-quantity"
                   className="w-12 rounded-md border border-gray bg-transparent p-2 text-center text-2xl font-semibold outline-none focus:border-white"
-                  placeholder="00"
-                  value={timers.restEverySec}
-                  onChange={handleChange}
                   required
-                />
+                >
+                  <option value="1" className="text-black">
+                    1
+                  </option>
+                  <option value="2" className="text-black">
+                    2
+                  </option>
+                  <option value="3" className="text-black">
+                    3
+                  </option>
+                  <option value="4" className="text-black">
+                    4
+                  </option>
+                </select>
                 <label htmlFor="rest-every-sec" className="text-sm font-light">
-                  sec
+                  time(s)
                 </label>
               </div>
             </div>

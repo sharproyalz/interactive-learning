@@ -9,6 +9,11 @@ necessary.
 
 ## Changelog
 
+### Version 0.0.6
+
+- chore: add a function for timer and its rest timer
+- chore: add a UI for rest timer
+
 ### Version 0.0.4
 
 - chore: create a navigation bar below
