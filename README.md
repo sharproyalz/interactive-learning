@@ -9,6 +9,11 @@ necessary.
 
 ## Changelog
 
+### Version 0.0.7
+
+- chore: create a logic to send a data into timer component from study timer component
+- chore: change the dummy data of timer and use the data from study timer
+
 ### Version 0.0.6
 
 - chore: change rest every to rest quantity in study timer
