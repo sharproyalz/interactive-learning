@@ -11,6 +11,10 @@ necessary.
 
 ### Version 0.0.6
 
+- chore: change rest every to rest quantity in study timer
+
+### Version 0.0.6
+
 - chore: add a function for timer and its rest timer
 - chore: add a UI for rest timer
 

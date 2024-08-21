@@ -1,14 +1,43 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
-export function TimerView() {
-  const initialTime = 10; // 10 seconds for example
+type Props = {
+  data: {
+    timerHour: string;
+    timerMin: string;
+    timerSec: string;
+    restQuantity: string;
+    restTimerHour: string;
+    restTimerMin: string;
+    restTimerSec: string;
+  };
+  isActive: boolean;
+  setIsActive: Dispatch<SetStateAction<boolean>>;
+  startTimer: () => void;
+  setIsStart: Dispatch<SetStateAction<boolean>>;
+};
+export function TimerView({
+  data,
+  isActive,
+  setIsActive,
+  startTimer,
+  setIsStart,
+}: Props) {
+  const initialTime =
+    +data.timerHour * 60 * 60 + +data.timerMin * 60 + +data.timerSec; // Timer
   const [time, setTime] = useState<number>(initialTime);
-  const [isActive, setIsActive] = useState<boolean>(false);
+  let [restQuantity, setRestQuantity] = useState(0); // Quantity
+
   const [intervalCount, setIntervalCount] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
-  const [pauseCountdown, setPauseCountdown] = useState<number>(5);
+  const [pauseCountdown, setPauseCountdown] = useState<number>(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -18,6 +47,7 @@ export function TimerView() {
         setIntervalCount((prevCount) => prevCount + 1);
       }, 1000);
     } else if (time === 0 || !isActive) {
+      setIsStart(false);
       clearInterval(timerRef.current as NodeJS.Timeout);
     }
 
@@ -25,10 +55,17 @@ export function TimerView() {
   }, [isActive, time, isPaused]);
 
   useEffect(() => {
-    if (intervalCount === 4) {
+    if (
+      intervalCount === Math.round(initialTime / (+data.restQuantity + 1)) &&
+      restQuantity !== +data.restQuantity
+    ) {
       setIsPaused(true);
       setIntervalCount(0);
-      let countdown = 5;
+      const totalRestTime =
+        +data.restTimerHour * 60 * 60 +
+        +data.restTimerMin * 60 +
+        +data.restTimerSec;
+      let countdown = totalRestTime;
       setPauseCountdown(countdown);
 
       const pauseTimer = setInterval(() => {
@@ -38,6 +75,7 @@ export function TimerView() {
         if (countdown === 0) {
           clearInterval(pauseTimer);
           setIsPaused(false);
+          setRestQuantity(restQuantity + 1);
         }
       }, 1000);
     }
@@ -50,10 +88,6 @@ export function TimerView() {
     const getHours = `0${Math.floor(time / 3600)}`.slice(-2);
 
     return `${getHours}:${getMinutes}:${getSeconds}`;
-  };
-
-  const handleStartPause = (): void => {
-    setIsActive(!isActive);
   };
 
   return (
@@ -90,7 +124,7 @@ export function TimerView() {
         </button>
         <button
           type="button"
-          onClick={handleStartPause}
+          onClick={startTimer}
           className="self-center rounded-md border border-transparent bg-primary px-8 py-2 font-semibold outline-none focus:border-white active:translate-x-1 active:translate-y-1"
         >
           {isActive ? "Pause" : "Start"}
