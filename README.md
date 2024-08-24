@@ -9,6 +9,12 @@ necessary.
 
 ## Changelog
 
+### Version 0.0.9
+
+- chore: create a function for cancel and pause button
+- chore: create a UI when the time end
+- chore: add a validation
+
 ### Version 0.0.7
 
 - chore: create a logic to send a data into timer component from study timer component

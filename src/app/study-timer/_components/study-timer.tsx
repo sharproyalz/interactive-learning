@@ -5,8 +5,27 @@ import { TimerView } from "~/app/study-timer/_components/timer";
 import { NavigationBar } from "~/components/navigation-bar";
 
 export default function StudyTimerView() {
+  const quotes = [
+    "A habit cannot be tossed out the window; it must be coaxed down the stairs a step at a time. -Mark Twain",
+    "And once you understand that habits can change, you have the freedom and the responsibility to remake them. -Charles Duhigg",
+    "Discipline is choosing between what you want now and what you want most. -Abraham Lincoln",
+    "Drop by drop is the water pot filled. -Buddha",
+    "Feeling sorry for yourself, and your present condition is not only a waste of energy but the worst habit you could possibly have. -Dale Carnegie",
+    "First forget inspiration. Habit is more dependable. Habit will sustain you whether you’re inspired or not. -Octavia Butler",
+    "Good habits are worth being fanatical about. -John Irving",
+    "Good habits formed at youth make all the difference. - Aristotle",
+    "Habit is the intersection of knowledge (what to do), skill (how to do), and desire (want to do). -Stephen R. Covey",
+    "Habits change into character. -Ovid",
+    "Happiness is a habit—cultivate it. -Elbert Hubbard",
+    "I fear not the man who has practiced 10,000 kicks, but I do fear the man who has practiced one kick 10,000 times. -Bruce Lee",
+    "If you are going to achieve excellence in big things, you develop the habit in little matters. Excellence is not an exception, it is a prevailing attitude. -Colin Powell",
+    "In essence, if we want to direct our lives, we must take control of our consistent actions.It's not what we do once in a while that shapes our lives, but what we do consistently. - Tony Robbins",
+    "Let today be the day you give up who you've been for who you can become. -Hal Elrod",
+  ];
+
   const [isStart, setIsStart] = useState(false);
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [isTimerEmpty, setIsTimerEmpty] = useState(false);
   // Initialize state with an object
   const [timers, setTimers] = useState({
     timerHour: "",
@@ -17,6 +36,12 @@ export default function StudyTimerView() {
     restTimerMin: "",
     restTimerSec: "",
   });
+  let totalTime =
+    +timers.timerHour * 60 * 60 + +timers.timerMin * 60 + +timers.timerSec;
+  let totalRestTime =
+    +timers.restTimerHour * 60 * 60 +
+    +timers.restTimerMin * 60 +
+    +timers.restTimerSec;
 
   // Handle input change
   const handleChange = (
@@ -33,8 +58,23 @@ export default function StudyTimerView() {
 
   // To know if timer is active
   const startTimer = (): void => {
-    setIsActive(!isActive);
+    if (totalTime !== 0 && totalRestTime !== 0) {
+      setIsTimerEmpty(false);
+      setIsStart(true);
+      setIsActive(!isActive);
+      console.log(
+        "isStart: ",
+        isStart,
+        "isTimerEmpty: ",
+        isTimerEmpty,
+        "isActive: ",
+        isActive,
+      );
+    } else {
+      setIsTimerEmpty(true);
+    }
   };
+  const quoteNum = Math.floor(Math.random() * quotes.length + 1);
   return (
     <>
       {isStart ? (
@@ -44,6 +84,9 @@ export default function StudyTimerView() {
           setIsActive={setIsActive}
           startTimer={startTimer}
           setIsStart={setIsStart}
+          totalTime={totalTime}
+          totalRestTime={totalRestTime}
+          quote={quotes[quoteNum]!}
         />
       ) : (
         <section className="relative mx-auto my-8 h-[calc(100vh-67px-32px)] max-w-screen-sm">
@@ -215,14 +258,19 @@ export default function StudyTimerView() {
             </div>
           </div>
           {/* Start Button */}
-          <div className="absolute bottom-8 flex w-full justify-center">
+          <div className="absolute bottom-8 flex w-full flex-col items-center justify-center">
+            {isTimerEmpty ? (
+              <div className="mb-2 text-red">
+                There must be at least 1 sec rest or timer.
+              </div>
+            ) : (
+              ""
+            )}
+
             <button
               type="button"
               className="self-center rounded-md border border-primary bg-primary px-12 py-2 font-semibold outline-none focus:border-white active:translate-x-1 active:translate-y-1"
-              onClick={() => {
-                setIsStart(true);
-                startTimer();
-              }}
+              onClick={() => startTimer()}
             >
               Start
             </button>

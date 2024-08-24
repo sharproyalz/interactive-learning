@@ -1,29 +1,32 @@
-import { type Config } from 'tailwindcss';
-import animate from 'tailwindcss-animate';
+import { type Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
 
 export default {
-  darkMode: ['class'],
+  darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
-  prefix: '',
+  prefix: "",
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: "2rem",
       screens: {
-        '2xl': '1400px',
+        "2xl": "1400px",
       },
     },
     extend: {
       colors: {
-        primary: '#22AFFF',
+        primary: "#22AFFF",
+        blue: "#222BFF",
+        red: "#FF2121",
+        orange: "#FF8B20",
 
         //Neutral Color
-        gray: '#808080',
+        gray: "#808080",
       },
     },
   },
