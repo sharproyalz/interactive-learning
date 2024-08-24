@@ -9,6 +9,11 @@ necessary.
 
 ## Changelog
 
+### Version 0.1.0
+
+- chore: create a pomodoro timer
+- chore: add a menu for selecting pomodoro and custom
+
 ### Version 0.0.9
 
 - chore: create a function for cancel and pause button

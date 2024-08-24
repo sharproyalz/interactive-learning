@@ -1,5 +1,4 @@
 import Link from "next/link";
-import path from "path";
 import { paths } from "~/paths";
 
 export default function LoginPage() {
@@ -17,7 +16,7 @@ export default function LoginPage() {
             type="text"
             name="username"
             id="username"
-            className="border-gray rounded-md border bg-transparent p-2 outline-none focus:border-white"
+            className="rounded-md border border-gray bg-transparent p-2 outline-none focus:border-white"
           />
         </div>
 
@@ -29,7 +28,7 @@ export default function LoginPage() {
             type="password"
             name="password"
             id="password"
-            className="border-gray rounded-md border bg-transparent p-2 outline-none focus:border-white"
+            className="rounded-md border border-gray bg-transparent p-2 outline-none focus:border-white"
           />
         </div>
 
@@ -41,7 +40,7 @@ export default function LoginPage() {
         </button>
       </form>
 
-      <hr className="text-gray my-4" />
+      <hr className="my-4 text-gray" />
 
       <div className="mx-8 flex">
         <Link

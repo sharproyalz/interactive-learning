@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
+import { type Dispatch, type SetStateAction, useState } from "react";
 import { TimerView } from "~/app/study-timer/_components/timer";
-import { NavigationBar } from "~/components/navigation-bar";
 
-export default function StudyTimerView() {
+export default function CustomTimerView({
+  setIsCustomActive,
+}: {
+  setIsCustomActive: Dispatch<SetStateAction<boolean>>;
+}) {
   const quotes = [
     "A habit cannot be tossed out the window; it must be coaxed down the stairs a step at a time. -Mark Twain",
     "And once you understand that habits can change, you have the freedom and the responsibility to remake them. -Charles Duhigg",
@@ -22,6 +26,7 @@ export default function StudyTimerView() {
     "In essence, if we want to direct our lives, we must take control of our consistent actions.It's not what we do once in a while that shapes our lives, but what we do consistently. - Tony Robbins",
     "Let today be the day you give up who you've been for who you can become. -Hal Elrod",
   ];
+  const quoteNum = Math.floor(Math.random() * quotes.length + 1);
 
   const [isStart, setIsStart] = useState(false);
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -36,9 +41,9 @@ export default function StudyTimerView() {
     restTimerMin: "",
     restTimerSec: "",
   });
-  let totalTime =
+  const totalTime =
     +timers.timerHour * 60 * 60 + +timers.timerMin * 60 + +timers.timerSec;
-  let totalRestTime =
+  const totalRestTime =
     +timers.restTimerHour * 60 * 60 +
     +timers.restTimerMin * 60 +
     +timers.restTimerSec;
@@ -74,7 +79,7 @@ export default function StudyTimerView() {
       setIsTimerEmpty(true);
     }
   };
-  const quoteNum = Math.floor(Math.random() * quotes.length + 1);
+
   return (
     <>
       {isStart ? (
@@ -82,7 +87,6 @@ export default function StudyTimerView() {
           data={timers}
           isActive={isActive}
           setIsActive={setIsActive}
-          startTimer={startTimer}
           setIsStart={setIsStart}
           totalTime={totalTime}
           totalRestTime={totalRestTime}
@@ -90,7 +94,16 @@ export default function StudyTimerView() {
         />
       ) : (
         <section className="relative mx-auto my-8 h-[calc(100vh-67px-32px)] max-w-screen-sm">
-          <h1 className="text-center font-semibold italic">Study Timer</h1>
+          <div className="flex items-center justify-center">
+            <button
+              type="button"
+              className="absolute left-0 p-2 hover:bg-white hover:text-black"
+              onClick={() => setIsCustomActive(false)}
+            >
+              <ArrowLeft />
+            </button>
+            <h1 className="text-center font-semibold italic">Custom Timer</h1>
+          </div>
 
           <div className="mx-8 mt-12">
             {/* Timer */}

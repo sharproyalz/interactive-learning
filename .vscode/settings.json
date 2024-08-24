@@ -18,5 +18,6 @@
   // "workbench.sideBar.location": "right",
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "files.autoSave": "off"
+  "files.autoSave": "off",
+  "source.organizeImports": "explicit"
 }

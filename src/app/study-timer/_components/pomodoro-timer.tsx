@@ -4,37 +4,22 @@ import React, {
   useState,
   useEffect,
   useRef,
-  type Dispatch,
   type SetStateAction,
+  type Dispatch,
 } from "react";
 
 type Props = {
-  data: {
-    timerHour: string;
-    timerMin: string;
-    timerSec: string;
-    restQuantity: string;
-    restTimerHour: string;
-    restTimerMin: string;
-    restTimerSec: string;
-  };
-  isActive: boolean;
-  setIsActive: Dispatch<SetStateAction<boolean>>;
-  setIsStart: Dispatch<SetStateAction<boolean>>;
-  totalTime: number;
-  totalRestTime: number;
   quote: string;
+  isPomoActive: boolean;
+  setIsPomoActive: Dispatch<SetStateAction<boolean>>;
 };
-export function TimerView({
-  data,
-  isActive,
-  setIsActive,
-  setIsStart,
-  totalTime,
-  totalRestTime,
+
+export function PomodoroTimerView({
   quote,
+  isPomoActive,
+  setIsPomoActive,
 }: Props) {
-  const initialTime = totalTime;
+  const initialTime = 1500;
   const [time, setTime] = useState<number>(initialTime);
   const [restQuantity, setRestQuantity] = useState(0); // Quantity
 
@@ -49,29 +34,23 @@ export function TimerView({
   useEffect(() => {
     if (isPause) {
       clearInterval(timerRef.current!);
-    } else if (isActive && time > 0 && !isRest) {
+    } else if (time > 0 && !isRest) {
       timerRef.current = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
         setIntervalCount((prevCount) => prevCount + 1);
       }, 1000);
-    } else if (time === 0 || !isActive) {
-      // setIsStart(false);
-      // setIsActive(false);
-      setIsTimeEnded(true);
+    } else if (time === 0) {
       clearInterval(timerRef.current!);
     }
 
     return () => clearInterval(timerRef.current!);
-  }, [isActive, time, isRest, isPause]);
+  }, [isPomoActive, time, isRest, isPause]);
 
   useEffect(() => {
-    if (
-      intervalCount === Math.round(initialTime / (+data.restQuantity + 1)) &&
-      restQuantity !== +data.restQuantity
-    ) {
+    if (intervalCount === initialTime) {
       setIsRest(true);
       setIntervalCount(0);
-      let countdown = totalRestTime;
+      let countdown = 300;
       setPauseCountdown(countdown);
 
       const pauseTimer = setInterval(() => {
@@ -79,6 +58,8 @@ export function TimerView({
         setPauseCountdown(countdown);
 
         if (countdown === 0) {
+          setIsPomoActive(false);
+          setIsTimeEnded(true);
           clearInterval(pauseTimer);
           setIsRest(false);
           setRestQuantity(restQuantity + 1);
@@ -98,11 +79,6 @@ export function TimerView({
 
   const pauseTimer = () => {
     setIsPause(!isPause);
-  };
-
-  const resetTimer = () => {
-    setIsStart(false);
-    setIsActive(false);
   };
 
   return (
@@ -133,7 +109,11 @@ export function TimerView({
         <button
           type="button"
           className="self-center rounded-md border border-transparent bg-primary/10 px-8 py-2 font-semibold text-primary outline-none focus:border-white active:translate-x-1 active:translate-y-1"
-          onClick={() => resetTimer()}
+          onClick={() => {
+            setTime(initialTime);
+            setIsTimeEnded(false);
+            setIsPomoActive(false);
+          }}
         >
           Reset
         </button>
