@@ -9,6 +9,10 @@ necessary.
 
 ## Changelog
 
+### Version 0.1.2
+
+- fix: make the initial color as white
+
 ### Version 0.1.0
 
 - chore: create a pomodoro timer
