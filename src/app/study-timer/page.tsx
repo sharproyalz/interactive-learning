@@ -4,9 +4,7 @@ import { NavigationBar } from "~/components/navigation-bar";
 export default function StudyTimerPage() {
   return (
     <>
-      <div className="">
-        <StudyTimerMenuView />
-      </div>
+      <StudyTimerMenuView />
 
       <NavigationBar />
     </>
