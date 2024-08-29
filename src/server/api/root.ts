@@ -1,5 +1,5 @@
-import { postRouter } from '~/server/api/routers/post';
-import { createTRPCRouter } from '~/server/api/trpc';
+import { drawingThemeRouter } from "~/server/api/routers/drawing-theme";
+import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
  * This is the primary router for your server.
@@ -7,7 +7,8 @@ import { createTRPCRouter } from '~/server/api/trpc';
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  // post: postRouter,
+  drawingTheme: drawingThemeRouter,
 });
 
 // export type definition of API

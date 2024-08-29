@@ -9,6 +9,16 @@ necessary.
 
 ## Changelog
 
+### Version 0.1.3
+
+- chore: create an API and zod schemas for daily and drawing themes
+- chore: insert a 366 sketch ideas in drawing themes
+- fix: update the prisma to latest to remove JSON error
+
+### Version 0.1.3
+
+- chore: create a UI for Sketch of the Day menu
+
 ### Version 0.1.2
 
 - fix: make the initial color as white
