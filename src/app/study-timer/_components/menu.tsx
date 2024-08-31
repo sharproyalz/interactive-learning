@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { PomodoroTimerView } from "~/app/study-timer/_components/pomodoro-timer";
-import StudyTimerView from "~/app/study-timer/_components/custom-timer";
+import { CustomTimerView } from "~/app/study-timer/_components/custom-timer";
 import Image from "next/image";
 
 export function StudyTimerMenuView() {
@@ -31,7 +31,7 @@ export function StudyTimerMenuView() {
   return (
     <>
       {isCustomActive && (
-        <StudyTimerView setIsCustomActive={setIsCustomActive} />
+        <CustomTimerView setIsCustomActive={setIsCustomActive} />
       )}
 
       {isPomoActive && (

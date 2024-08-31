@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { type Dispatch, type SetStateAction, useState } from "react";
 import { TimerView } from "~/app/study-timer/_components/timer";
 
-export default function CustomTimerView({
+export function CustomTimerView({
   setIsCustomActive,
 }: {
   setIsCustomActive: Dispatch<SetStateAction<boolean>>;

@@ -9,6 +9,11 @@ necessary.
 
 ## Changelog
 
+### Version 0.1.8
+
+- chore: create a UI submit and records for sketch of the day
+- chore: create a backend functions for submitting a sketch
+
 ### Version 0.1.7
 
 - chore: set the daily sketch based on index of an array instead of randomizing it

@@ -31,7 +31,7 @@ model DrawingTheme {
 model Sketch {
     id        String    @id @default(cuid())
     name      String
-    date      DateTime
+    date      DateTime? @default(now())
     image     String
     imageId   String
     createdAt DateTime? @default(now())
