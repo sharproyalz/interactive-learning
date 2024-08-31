@@ -9,7 +9,11 @@ necessary.
 
 ## Changelog
 
-### Version 0.1.3
+### Version 0.1.7
+
+- chore: set the daily sketch based on index of an array instead of randomizing it
+
+### Version 0.1.4
 
 - chore: create an API and zod schemas for daily and drawing themes
 - chore: insert a 366 sketch ideas in drawing themes
