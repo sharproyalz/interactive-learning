@@ -4,7 +4,7 @@ import { api } from "~/trpc/react";
 import { schemas } from "~/zod-schemas/schemas";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { type z } from "zod";
 
 type Theme = z.infer<typeof schemas.drawingTheme.set>;
 

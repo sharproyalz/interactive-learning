@@ -2,7 +2,6 @@
 
 import { ArrowLeft } from "lucide-react";
 import { CldImage } from "next-cloudinary";
-import { formatRevalidate } from "next/dist/server/lib/revalidate";
 import Link from "next/link";
 import { paths } from "~/paths";
 import { api } from "~/trpc/react";

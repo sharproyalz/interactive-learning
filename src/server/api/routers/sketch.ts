@@ -2,7 +2,7 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { schemas } from "~/zod-schemas/schemas";
 
 export const sketchRouter = createTRPCRouter({
-  getAll: publicProcedure.query(({ input, ctx }) => {
+  getAll: publicProcedure.query(({ ctx }) => {
     return ctx.db.sketch.findMany();
   }),
 

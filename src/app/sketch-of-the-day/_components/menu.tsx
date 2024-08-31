@@ -1,15 +1,10 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { DrawingTheme } from "@prisma/client";
+import { type DrawingTheme } from "@prisma/client";
 import Link from "next/link";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
 import { paths } from "~/paths";
-import { api } from "~/trpc/react";
 import { formatSingleNumber } from "~/utils/format-single-number";
 import { getMonthName } from "~/utils/get-month-name";
-import { schemas } from "~/zod-schemas/schemas";
 
 type Props = {
   drawingTheme: DrawingTheme | undefined;

@@ -1,11 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CldImage, CldUploadButton } from "next-cloudinary";
+import { CldImage } from "next-cloudinary";
 import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import {
-  OnSuccessUpload,
+  type OnSuccessUpload,
   ResourceType,
   UploadButton,
 } from "~/components/upload-button";
@@ -13,11 +13,11 @@ import { paths } from "~/paths";
 import { api } from "~/trpc/react";
 import { schemas } from "~/zod-schemas/schemas";
 import { toast } from "sonner";
-import { z } from "zod";
-import { AlertTriangleIcon, ArrowLeft, Plus } from "lucide-react";
+import { type z } from "zod";
+import { ArrowLeft } from "lucide-react";
 import { formatSingleNumber } from "~/utils/format-single-number";
 import { getMonthName } from "~/utils/get-month-name";
-import { DrawingTheme } from "@prisma/client";
+import { type DrawingTheme } from "@prisma/client";
 import Link from "next/link";
 
 type Props = {
@@ -38,10 +38,10 @@ export default function SubmitSketchView({ drawingTheme }: Props) {
   });
 
   const addSketch = api.sketch.create.useMutation({
-    onSuccess: async ({ id }) => {
+    onSuccess: async () => {
       toast.success("Banner has been added.");
       console.log("Banner has been added.");
-      await router.push(`${paths.SKETCH_OF_THE_DAY}`);
+      router.push(`${paths.SKETCH_OF_THE_DAY}`);
     },
   });
 
