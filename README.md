@@ -9,6 +9,10 @@ necessary.
 
 ## Changelog
 
+### Version 0.1.11
+
+- chore: make the sketch-records page a SSG
+
 ### Version 0.1.10
 
 - fix: add force-dynamic to pages with date
