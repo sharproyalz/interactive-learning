@@ -9,6 +9,10 @@ necessary.
 
 ## Changelog
 
+### Version 0.1.10
+
+- fix: add force-dynamic to pages with date
+
 ### Version 0.1.8
 
 - chore: create a UI submit and records for sketch of the day

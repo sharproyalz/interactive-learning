@@ -3,15 +3,22 @@
 import { type DrawingTheme } from "@prisma/client";
 import Link from "next/link";
 import { paths } from "~/paths";
+import { api } from "~/trpc/react";
 import { formatSingleNumber } from "~/utils/format-single-number";
+import { getDayOfYear } from "~/utils/get-day-of-year";
 import { getMonthName } from "~/utils/get-month-name";
 
 type Props = {
-  drawingTheme: DrawingTheme | undefined;
+  initialData: DrawingTheme[];
 };
 
-export function SketchMenuView({ drawingTheme }: Props) {
+export function SketchMenuView({ initialData }: Props) {
   const date = new Date();
+  const dayOfYear = getDayOfYear();
+  const getDrawingThemeQuery = api.drawingTheme.getAll.useQuery(undefined, {
+    initialData,
+  });
+  const drawingTheme = getDrawingThemeQuery.data[dayOfYear];
 
   return (
     <section className="relative mx-auto my-8 flex h-[calc(100vh-67px-32px)] max-w-screen-sm flex-col items-center">

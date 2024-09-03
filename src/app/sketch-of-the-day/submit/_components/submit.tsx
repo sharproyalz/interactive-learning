@@ -19,16 +19,23 @@ import { formatSingleNumber } from "~/utils/format-single-number";
 import { getMonthName } from "~/utils/get-month-name";
 import { type DrawingTheme } from "@prisma/client";
 import Link from "next/link";
+import { getDayOfYear } from "~/utils/get-day-of-year";
 
 type Props = {
-  drawingTheme: DrawingTheme | undefined;
+  initialData: DrawingTheme[];
 };
 
 type Inputs = z.infer<typeof schemas.sketch.create>;
 
-export default function SubmitSketchView({ drawingTheme }: Props) {
+export default function SubmitSketchView({ initialData }: Props) {
   const date = new Date();
+  const dayOfYear = getDayOfYear();
   const router = useRouter();
+
+  const getDrawingThemeQuery = api.drawingTheme.getAll.useQuery(undefined, {
+    initialData,
+  });
+  const drawingTheme = getDrawingThemeQuery.data[dayOfYear];
 
   const addSketchForm = useForm<Inputs>({
     resolver: zodResolver(schemas.sketch.create),
