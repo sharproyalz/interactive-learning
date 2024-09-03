@@ -29,8 +29,10 @@ type Inputs = z.infer<typeof schemas.sketch.create>;
 
 export default function SubmitSketchView({ initialData }: Props) {
   const date = new Date();
-  const dayOfYear = getDayOfYear(date);
+  const dayOfYear = 21;
+  // const dayOfYear = getDayOfYear(date);
   const router = useRouter();
+
   const getDrawingThemeQuery = api.drawingTheme.getAll.useQuery(undefined, {
     initialData,
   });
@@ -60,6 +62,7 @@ export default function SubmitSketchView({ initialData }: Props) {
     addSketch.mutate(values);
     console.log(values);
   };
+
   return (
     <>
       <section className="relative mx-auto my-8 flex h-[calc(100vh-67px-32px)] max-w-screen-sm flex-col items-center">
