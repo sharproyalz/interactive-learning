@@ -4,11 +4,11 @@ import { api } from "~/trpc/server";
 import { getDayOfYear } from "~/utils/get-day-of-year";
 
 export default async function SubmitSketchPage() {
-  const drawingThemes = await api.drawingTheme.getAll.query();
+  const drawingTheme = await api.drawingTheme.getAll.query();
 
   return (
     <>
-      <SubmitSketchView drawingThemes={drawingThemes} />
+      <SubmitSketchView initialData={drawingTheme} />
 
       <NavigationBar />
     </>

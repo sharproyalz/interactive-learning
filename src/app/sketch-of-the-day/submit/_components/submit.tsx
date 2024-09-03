@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CldImage, CldUploadButton } from "next-cloudinary";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
-
 import { paths } from "~/paths";
 import { api } from "~/trpc/react";
 import { schemas } from "~/zod-schemas/schemas";
@@ -23,16 +22,19 @@ import {
 import { getDayOfYear } from "~/utils/get-day-of-year";
 
 type Props = {
-  drawingThemes: DrawingTheme[];
+  initialData: DrawingTheme[];
 };
 
 type Inputs = z.infer<typeof schemas.sketch.create>;
 
-export default function SubmitSketchView({ drawingThemes }: Props) {
+export default function SubmitSketchView({ initialData }: Props) {
   const date = new Date();
+  const dayOfYear = getDayOfYear(date);
   const router = useRouter();
-  const dayOfYear = getDayOfYear();
-  const drawingTheme = drawingThemes[dayOfYear];
+  const getDrawingThemeQuery = api.drawingTheme.getAll.useQuery(undefined, {
+    initialData,
+  });
+  const drawingTheme = getDrawingThemeQuery.data[dayOfYear];
 
   const addSketchForm = useForm<Inputs>({
     resolver: zodResolver(schemas.sketch.create),
