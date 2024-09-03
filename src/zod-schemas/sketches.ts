@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const sketchSchemas = {
+export const sketchesSchemas = {
   get: z.object({
     id: z.string().cuid(),
   }),

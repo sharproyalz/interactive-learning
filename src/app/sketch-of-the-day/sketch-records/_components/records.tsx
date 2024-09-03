@@ -1,5 +1,6 @@
 "use client";
 
+import { Sketch } from "@prisma/client";
 import { ArrowLeft } from "lucide-react";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
@@ -7,8 +8,14 @@ import { paths } from "~/paths";
 import { api } from "~/trpc/react";
 import { formatDate } from "~/utils/format-date";
 
-export function SketchRecordsView() {
-  const getSketchesQuery = api.sketch.getAll.useQuery();
+type Props = {
+  initialData: Sketch[];
+};
+
+export function SketchRecordsView({ initialData }: Props) {
+  const getSketchesQuery = api.sketches.getAll.useQuery(undefined, {
+    initialData,
+  });
   const sketches = getSketchesQuery.data;
 
   return (

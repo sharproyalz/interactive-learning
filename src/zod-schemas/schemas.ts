@@ -1,7 +1,7 @@
 import { drawingThemesSchemas } from "~/zod-schemas/drawing-themes";
-import { sketchSchemas } from "~/zod-schemas/sketch";
+import { sketchesSchemas } from "~/zod-schemas/sketches";
 
 export const schemas = {
   drawingTheme: drawingThemesSchemas,
-  sketch: sketchSchemas,
+  sketches: sketchesSchemas,
 };

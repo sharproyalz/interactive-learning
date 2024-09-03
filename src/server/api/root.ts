@@ -1,5 +1,5 @@
 import { drawingThemeRouter } from "~/server/api/routers/drawing-theme";
-import { sketchRouter } from "~/server/api/routers/sketch";
+import { sketchesRouter } from "~/server/api/routers/sketch";
 import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -10,7 +10,7 @@ import { createTRPCRouter } from "~/server/api/trpc";
 export const appRouter = createTRPCRouter({
   // post: postRouter,
   drawingTheme: drawingThemeRouter,
-  sketch: sketchRouter,
+  sketches: sketchesRouter,
 });
 
 // export type definition of API
