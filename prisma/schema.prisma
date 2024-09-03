@@ -17,6 +17,7 @@ model Account {
     id       String @id @default(cuid())
     username String @unique
     password String
+    // sketch Sketch[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -27,11 +28,16 @@ model DrawingTheme {
     name String @unique
 }
 
-model DailyTheme {
-    id     String    @id @default(cuid())
-    name   String
-    date   DateTime? @default(now())
-    isDone Boolean   @default(false)
+model Sketch {
+    id        String    @id @default(cuid())
+    name      String
+    date      DateTime
+    image     String
+    imageId   String
+    createdAt DateTime? @default(now())
+    updatedAt DateTime? @default(now())
+    // account   Account? @relation(fields: [accountId], references: [id], onDelete: Cascade)
+    // accountId String?
 }
 
 // model Post {

@@ -1,8 +1,44 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { DrawingTheme } from "@prisma/client";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+import { api } from "~/trpc/react";
 import { formatSingleNumber } from "~/utils/format-single-number";
 import { getMonthName } from "~/utils/get-month-name";
+import { schemas } from "~/zod-schemas/schemas";
 
-export function SketchMenuView() {
+type Props = {
+  drawingTheme: DrawingTheme | undefined;
+};
+
+type Theme = z.infer<typeof schemas.drawingTheme.set>;
+
+export function SketchMenuView({ drawingTheme }: Props) {
   const date = new Date();
+  const setDrawingThemesForm = useForm<Theme>({
+    resolver: zodResolver(schemas.drawingTheme.set),
+    // Insert here
+    // values: [
+    //   { name: "Anime Character" },
+    // ],
+  });
+
+  const setDrawingThemes = api.drawingTheme.set.useMutation({
+    onSuccess: async () => {
+      console.log("Drawing themes has been inserted.");
+    },
+  });
+
+  const onSubmit: SubmitHandler<Theme> = (values) => {
+    try {
+      console.log("Submitting values:", values);
+      setDrawingThemes.mutate(values);
+    } catch (error) {
+      console.error("Error submitting values:", error);
+    }
+  };
 
   return (
     <section className="relative mx-auto my-8 flex h-[calc(100vh-67px-32px)] max-w-screen-sm flex-col items-center">
@@ -14,7 +50,9 @@ export function SketchMenuView() {
           {formatSingleNumber(date.getDate())}{" "}
           {getMonthName(date.getMonth())?.toLowerCase()}
         </div>
-        <div className="text-2xl font-semibold text-primary">Celestial</div>
+        <div className="text-2xl font-semibold text-primary">
+          {drawingTheme ? drawingTheme?.name : undefined}
+        </div>
       </div>
 
       {/* Buttons */}
