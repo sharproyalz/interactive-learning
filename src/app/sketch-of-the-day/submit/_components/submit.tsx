@@ -20,16 +20,19 @@ import {
   ResourceType,
   UploadButton,
 } from "~/components/upload-buttons";
+import { getDayOfYear } from "~/utils/get-day-of-year";
 
 type Props = {
-  drawingTheme: DrawingTheme | undefined;
+  drawingThemes: DrawingTheme[];
 };
 
 type Inputs = z.infer<typeof schemas.sketch.create>;
 
-export default function SubmitSketchView({ drawingTheme }: Props) {
+export default function SubmitSketchView({ drawingThemes }: Props) {
   const date = new Date();
   const router = useRouter();
+  const dayOfYear = getDayOfYear();
+  const drawingTheme = drawingThemes[dayOfYear];
 
   const addSketchForm = useForm<Inputs>({
     resolver: zodResolver(schemas.sketch.create),
