@@ -14,19 +14,10 @@ export const drawingThemeRouter = createTRPCRouter({
 
   set: publicProcedure
     .input(schemas.drawingTheme.set)
-    .mutation(async ({ input, ctx }) => {
-      console.log("Received input for 'set':", input);
-
-      try {
-        const result = await ctx.db.drawingTheme.createMany({
-          data: input,
-          skipDuplicates: true,
-        });
-        console.log("Result from 'set':", result);
-        return result;
-      } catch (error) {
-        console.error("Error in 'set' procedure:", error);
-        throw new Error("Failed to insert drawing theme.");
-      }
+    .mutation(({ input, ctx }) => {
+      return ctx.db.drawingTheme.createMany({
+        data: input,
+        skipDuplicates: true,
+      });
     }),
 });
