@@ -9,6 +9,10 @@ necessary.
 
 ## Changelog
 
+### Version 0.1.12
+
+- chore: add a layout for study-timer and sketch-of-the-day
+
 ### Version 0.1.11
 
 - chore: make the sketch-records page a SSG

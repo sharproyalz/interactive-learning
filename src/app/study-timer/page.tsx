@@ -5,8 +5,6 @@ export default function StudyTimerPage() {
   return (
     <>
       <StudyTimerMenuView />
-
-      <NavigationBar />
     </>
   );
 }

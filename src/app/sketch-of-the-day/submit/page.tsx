@@ -11,8 +11,6 @@ export default async function SubmitSketchPage() {
   return (
     <>
       <SubmitSketchView initialData={drawingTheme} />
-
-      <NavigationBar />
     </>
   );
 }

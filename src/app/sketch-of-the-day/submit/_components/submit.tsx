@@ -25,7 +25,7 @@ type Props = {
   initialData: DrawingTheme[];
 };
 
-type Inputs = z.infer<typeof schemas.sketch.create>;
+type Inputs = z.infer<typeof schemas.sketches.create>;
 
 export default function SubmitSketchView({ initialData }: Props) {
   const date = new Date();
@@ -38,16 +38,16 @@ export default function SubmitSketchView({ initialData }: Props) {
   const drawingTheme = getDrawingThemeQuery.data[dayOfYear];
 
   const addSketchForm = useForm<Inputs>({
-    resolver: zodResolver(schemas.sketch.create),
+    resolver: zodResolver(schemas.sketches.create),
     defaultValues: {
       name: drawingTheme?.name,
     },
   });
 
-  const addSketch = api.sketch.create.useMutation({
+  const addSketch = api.sketches.create.useMutation({
     onSuccess: async () => {
-      toast.success("Banner has been added.");
-      console.log("Banner has been added.");
+      toast.success("Sketch has been submitted.");
+      console.log("Sketch has been submitted.");
       router.push(`${paths.SKETCH_OF_THE_DAY}`);
     },
   });

@@ -8,8 +8,6 @@ export default async function SketchRecordsPage() {
   return (
     <>
       <SketchRecordsView initialData={sketches} />
-
-      <NavigationBar />
     </>
   );
 }

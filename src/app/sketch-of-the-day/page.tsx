@@ -11,8 +11,6 @@ export default async function SketchOfTheDayPage() {
   return (
     <>
       <SketchMenuView initialData={drawingTheme} />
-
-      <NavigationBar />
     </>
   );
 }
