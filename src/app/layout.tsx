@@ -35,7 +35,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable} h-[100dvh] text-white`}>
+      <body className={`font-sans ${inter.variable} text-white`}>
         <TRPCReactProvider>
           <ThemeProvider
             attribute="class"
@@ -43,7 +43,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="relative flex min-h-screen flex-col">
+            <div className="relative flex min-h-[100dvh] flex-col">
               <main className="flex-1">{children}</main>
               <Toaster richColors />
             </div>
